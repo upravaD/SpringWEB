@@ -1,16 +1,19 @@
 package com.aston.rest.config;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+@Configuration
+@ComponentScan(basePackages = "com.aston.rest")
+public class DispatcherServlet extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{};
+        return new Class[0];
     }
-
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SpringConfig.class};
+        return new Class[]{JPAConfig.class};
     }
 
     @Override
