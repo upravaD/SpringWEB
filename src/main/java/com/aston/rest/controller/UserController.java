@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@ResponseBody
 public class UserController {
     private final UserService service;
 
@@ -21,15 +20,14 @@ public class UserController {
         this.service = service;
     }
 
-    @GetMapping("/id")
-    public UserDto getById(@RequestParam String id) {
+    @GetMapping("/{id}")
+    public UserDto getById(@PathVariable String id) {
         return service.findById(Long.parseLong(id));
     }
 
     @GetMapping
-    @ResponseBody
-    public ResponseEntity<List<UserDto>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public List<UserDto> getAll() {
+        return service.getAll();
     }
 
     @PostMapping
@@ -38,7 +36,7 @@ public class UserController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<HttpStatus> update(@RequestBody User user, @RequestParam String id) {
         user.setId(Long.parseLong(id));
         service.update(user);

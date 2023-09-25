@@ -2,8 +2,6 @@ package com.aston.rest.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "permissions")
 public class Permission {
@@ -12,21 +10,13 @@ public class Permission {
     private Long id;
     @Column(name = "permission_name")
     private String permissionName;
-    @ManyToMany
-    @JoinTable(
-            name = "role_permissions",
-            joinColumns = @JoinColumn(name = "permission_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles;
 
     public Permission() {
     }
 
-    public Permission(Long id, String permissionName, List<Role> roles) {
+    public Permission(Long id, String permissionName) {
         this.id = id;
         this.permissionName = permissionName;
-        this.roles = roles;
     }
 
     public Long getId() {
@@ -43,10 +33,4 @@ public class Permission {
         this.permissionName = permissionName;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
 }

@@ -3,7 +3,6 @@ package com.aston.rest.config;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -21,7 +20,6 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.aston.rest.repository")
-@ComponentScan(basePackages = "com.aston.rest")
 @PropertySource(value = "classpath:application.properties")
 public class JPAConfig {
     private final Environment environment;

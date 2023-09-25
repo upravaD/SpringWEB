@@ -7,7 +7,6 @@ import com.aston.rest.util.mapper.PermissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +38,7 @@ public class PermissionService implements RestService<Permission, PermissionDto>
     public PermissionDto findById(Long id) {
         Permission permission = repository
                 .findById(id)
-                .orElseGet(() -> new Permission(-1L, "emptyPermission", new ArrayList<>()));
+                .orElseGet(() -> new Permission(-1L, "emptyPermission"));
         return PermissionMapper.instance.entityToDto(permission);
     }
 
