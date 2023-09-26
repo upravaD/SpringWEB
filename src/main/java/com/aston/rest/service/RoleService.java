@@ -13,21 +13,21 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoleService implements RestService<Role, RoleDto> {
-    private final RoleRepository repository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public RoleService(RoleRepository repository) {
-        this.repository = repository;
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 
     @Override
     public void create(Role role) {
-        repository.save(role);
+        roleRepository.save(role);
     }
 
     @Override
     public List<RoleDto> getAll() {
-        List<Role> roles = repository.findAll();
+        List<Role> roles = roleRepository.findAll();
         return roles
                 .stream()
                 .map(RoleMapper.instance::entityToDto)
@@ -36,7 +36,7 @@ public class RoleService implements RestService<Role, RoleDto> {
 
     @Override
     public RoleDto findById(Long id) {
-        Role role = repository
+        Role role = roleRepository
                 .findById(id)
                 .orElseGet(() -> new Role(-1L, "emptyRole", new ArrayList<>()));
         return RoleMapper.instance.entityToDto(role);
@@ -44,11 +44,15 @@ public class RoleService implements RestService<Role, RoleDto> {
 
     @Override
     public void update(Role role) {
-        repository.save(role);
+        roleRepository.save(role);
     }
 
     @Override
     public void delete(Role role) {
-        repository.delete(role);
+        roleRepository.delete(role);
+    }
+
+    public void updateRolePermissions(Long roleId, Long permissionId) {
+        roleRepository.updateRolePermissions(roleId, permissionId);
     }
 }

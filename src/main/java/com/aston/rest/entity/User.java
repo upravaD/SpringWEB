@@ -10,8 +10,8 @@ public class User {
     private Long id;
     @Column
     private String username;
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public User(Long id, String username, Role role) {

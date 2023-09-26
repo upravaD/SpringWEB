@@ -13,40 +13,40 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService service;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService service) {
-        this.service = service;
+        this.userService = service;
     }
 
     @GetMapping("/{id}")
     public UserDto getById(@PathVariable String id) {
-        return service.findById(Long.parseLong(id));
+        return userService.findById(Long.parseLong(id));
     }
 
     @GetMapping
     public List<UserDto> getAll() {
-        return service.getAll();
+        return userService.getAll();
     }
 
     @PostMapping
     public ResponseEntity<HttpStatus> add(@RequestBody User user) {
-        service.create(user);
+        userService.create(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody User user, @RequestParam String id) {
+    public ResponseEntity<HttpStatus> update(@RequestBody User user, @PathVariable String id) {
         user.setId(Long.parseLong(id));
-        service.update(user);
+        userService.update(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public ResponseEntity<HttpStatus> delete(@RequestBody User user, @RequestParam String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@RequestBody User user, @PathVariable String id) {
         user.setId(Long.parseLong(id));
-        service.delete(user);
+        userService.delete(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }
