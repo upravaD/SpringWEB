@@ -44,16 +44,6 @@ public class RoleController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/role/{id}")
-    public ResponseEntity<HttpStatus> setRolePermission(@RequestBody Role role,
-                                                        @RequestParam Long permissionId,
-                                                        @PathVariable String id) {
-        role.setId(Long.parseLong(id));
-        roleService.findById(Long.parseLong(id));
-        roleService.updateRolePermissions(role.getId(), permissionId);
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@RequestBody Role role,
                                              @PathVariable String id) {

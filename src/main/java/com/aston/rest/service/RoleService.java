@@ -51,8 +51,4 @@ public class RoleService implements RestService<Role, RoleDto> {
     public void delete(Role role) {
         roleRepository.delete(role);
     }
-
-    public void updateRolePermissions(Long roleId, Long permissionId) {
-        roleRepository.updateRolePermissions(roleId, permissionId);
-    }
 }

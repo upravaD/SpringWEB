@@ -10,15 +10,6 @@ public class RoleDto {
     private String name;
     private List<Permission> permissions = new ArrayList<>();
 
-    public RoleDto() {
-    }
-
-    public RoleDto(Long id, String name, List<Permission> permissions) {
-        this.id = id;
-        this.name = name;
-        this.permissions = permissions;
-    }
-
     public Long getId() {
         return id;
     }

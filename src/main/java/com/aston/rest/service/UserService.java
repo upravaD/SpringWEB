@@ -3,11 +3,11 @@ package com.aston.rest.service;
 import com.aston.rest.dto.UserDto;
 import com.aston.rest.entity.Role;
 import com.aston.rest.entity.User;
-import com.aston.rest.repository.UserRepository;
 import com.aston.rest.util.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.aston.rest.repository.UserRepository;
+
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
